@@ -15,7 +15,8 @@ class RecipesController < ApplicationController
 
 	def create
 		@recipe = Recipe.new(recipe_params)
-
+        byebug
+        
 		if @recipe.save
 			redirect_to @recipe, notice: "Successfully created a new recipe"
 		else
@@ -44,7 +45,7 @@ class RecipesController < ApplicationController
 	private
 
 	def recipe_params
-		params.require(:recipe).permit(:title, :description, :image)
+		params.require(:recipe).permit(:title, :description, :image, ingredient_attributes: [:id, :name, :_destroy], directions_attribute: [:id, :step, :_destroy])
 	end
 
 	def find

@@ -1,6 +1,23 @@
 <h1> <%= @recipe.title %> </h1>
 <p><%= image_tag @recipe.image.url(:medium) %></p>
 <p> <%= @recipe.description %> </p>
+<br>
+<div id="ingredients">
+<h2>Ingredients</h2>
+<ul><%= @recipe.ingredients.each do |ingredient| %>
+<li><%= ingredient.name %>
+	<% end %>
+</li>
+</ul>
+<br>
+<ul>
+<div id="directions">
+<h2>Directions</h2>
+<ul><%= @recipe.directions.each do |direction| %>
+<li><%= direction.step %></li>
+<% end %>
+</ul>
+<br>
 
 <%= link_to "Home", root_path %>
 <%= link_to "Edit", edit_recipe_path %>
